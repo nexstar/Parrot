@@ -14,7 +14,7 @@ mkdir ~/fly5/bebop -p && cd ~/fly5/bebop
 repo init -u https://github.com/Parrot-Developers/arsdk_manifests.git
 repo sync
 
-export LD_LIBRARY_PATH=~/fly5/bebop/out/Unix-base/staging/usr/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/home/XXXXXXXX/fly5/bebop/out/Unix-base/staging/usr/lib:$LD_LIBRARY_PATH
 		      
 echo $LD_LIBRARY_PATH
 
