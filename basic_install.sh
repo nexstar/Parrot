@@ -2,7 +2,7 @@
 sudo apt-get update
 
 echo "**********install tools**********"
-sudo apt-get install vim git wget automake autoconf libtool yasm nasm phablet-tools -y
+sudo apt-get install vim git wget build-essential automake autoconf libtool yasm nasm phablet-tools -y
 
 echo "**********install lib************"
 sudo apt-get install libncurses5-dev libavcodec-dev libavformat-dev libswscale-dev libavutil-dev -y
