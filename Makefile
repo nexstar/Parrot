@@ -1,6 +1,6 @@
 EXEC_NAME=BebopDroneDecodeStream #output filename
 
-SDK_DIR=~/fly5/bebop/out/Unix-base/staging/usr
+SDK_DIR=/home/???????/fly5/bebop/out/Unix-base/staging/usr
 IDIR=./
 CC=gcc
 CFLAGS=-I$(IDIR) -I $(SDK_DIR)/include -g
