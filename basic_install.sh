@@ -18,3 +18,9 @@ cd ~/fly5/bebop
 ./build.sh -p arsdk-native -t build-sdk -j
 
 cp /home/user/Parrot/Makefile /home/user/fly5/bebop/packages/Samples/Unix/BebopDroneDecodeStream
+cd /home/user/fly5/bebop/packages/Samples/Unix/BebopDroneDecodeStream
+make 
+make run
+
+
+
