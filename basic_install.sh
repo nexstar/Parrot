@@ -9,17 +9,21 @@ sudo apt-get install libncurses5-dev libavcodec-dev libavformat-dev libswscale-d
 sudo apt-get install libavahi-core-dev libavahi-client-dev libjson0-dev libjson0 mplayer -y
 
 echo "******build fly and sync*********"
-mkdir ~/fly5/bebop -p && cd ~/fly5/bebop
+path=$HOME/fly/bebop
+mkdir $path -p && cd $path
 
 repo init -u https://github.com/Parrot-Developers/arsdk_manifests.git
 repo sync
 
-export LD_LIBRARY_PATH=~/fly5/bebop/out/Unix-base/staging/usr/lib:$LD_LIBRARY_PATH
-		      
-echo $LD_LIBRARY_PATH
-
-cd ~/fly5/bebop
+echo "******exec build.sh *********"
+cd $path
 ./build.sh -p arsdk-native -t build-sdk -j
 
-cp ~/Parrot/Makefile ~/fly5/bebop/packages/Samples/Unix/BebopDroneDecodeStream
-cd ~/fly5/bebop/packages/Samples/Unix/BebopDroneDecodeStream
+echo "#path and LD_LIBRARY_PATH" >> $HOME/.bashrc
+echo "export LD_LIBRARY_PATH=$path/out/Unix-base/staging/usr/lib:\$LD_LIBRARY_PATH" >> $HOME/.bashrc
+
+echo "******install finshed********"
+
+cp ~/Parrot/Makefile ~/fly/bebop/packages/Samples/Unix/BebopDroneDecodeStream
+
+echo "******CP Finished************"
