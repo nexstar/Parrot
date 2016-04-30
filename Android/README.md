@@ -62,7 +62,7 @@ Android-Parrot
 	
 	$./Install_Studio.sh
 
-3.以上執行的動作都是在對Studio最Java的安裝
+3.以上執行的動作都是在對Studio做的Java相關安裝
 
 4.開始要抓官方給予的範例
 
