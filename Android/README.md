@@ -1,6 +1,6 @@
 Android-Parrot
 ---
-## Windown ##
+## Windows ##
 
 首先在電腦中安中Google Studio (安裝步驟省略!!),再來安裝手機裝置(安裝步驟省略!!)
 
