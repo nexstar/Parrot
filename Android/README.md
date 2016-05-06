@@ -2,7 +2,10 @@ Android-Parrot
 ---
 ## Windows ##
 
-首先在電腦中安中Google Studio (安裝步驟省略!!),再來安裝手機裝置(安裝步驟省略!!)
+首先在電腦中安中Google Studio (安裝步驟省略!!),再來安裝手機裝置( [Install-Link](https://github.com/nexstar/Parrot/tree/master/Android/Android-Driver) )
+
+
+
 
 接下來使用連結進入官方給予的資料網站[Parrot-Developer](http://developer.parrot.com/docs/bebop/)
 
