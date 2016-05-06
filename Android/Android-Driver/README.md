@@ -29,7 +29,7 @@
 
 ![5](https://raw.githubusercontent.com/nexstar/Parrot/master/Android/Android-Driver/Android-Driver-Picture/14.jpg)
 
-8.進入您電腦找裝置管理員應該會有以下紅框的裝置(務必記得傳輸線記得插上電腦)
+8.進入您電腦找裝置管理員應該會有以下紅框的裝置(務必傳輸線插上電腦)
 
 ![6](https://github.com/nexstar/Parrot/raw/master/Android/Android-Driver/Android-Driver-Picture/2.PNG)
 
