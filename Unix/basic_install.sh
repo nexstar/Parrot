@@ -24,6 +24,6 @@ echo "export LD_LIBRARY_PATH=$path/out/Unix-base/staging/usr/lib:\$LD_LIBRARY_PA
 
 echo "******install finshed********"
 
-cp ~/Parrot/Makefile ~/fly/bebop/packages/Samples/Unix/BebopDroneDecodeStream
+cp ~/Parrot/Unix/Makefile ~/fly/bebop/packages/Samples/Unix/BebopDroneDecodeStream
 
 echo "******CP Finished************"
