@@ -1,0 +1,55 @@
+ndk{    
+  moduleName "MyLibrary"
+}
+sourceSets.main{
+    jni.srcDirs = []    
+    jniLibs.srcDir "src/main/libs"
+}
+
+
+-----JAVA-class
+
+
+public class MyNdk {
+    static {
+        System.loadLibrary("MyLibrary");    
+}   
+    public native String getString();
+}
+
+--------------------
+MyLibrary.cpp
+
+#include "com_zhangyp_higo_myndk_MyNdk.h"
+
+JNIEXPORT jstring JNICALL Java_com_zhangyp_higo_myndk_MyNdk_getString
+  (JNIEnv * env, jobject obj){
+   return (*env).NewStringUTF("This is mylibrary !!!");
+  }
+
+---------------------
+
+Android.mk
+
+LOCAL_PATH := $(call my-dir)
+
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := MyLibrary
+LOCAL_SRC_FILES =: MyLibrary.cpp
+include $(BUILD_SHARED_LIBRARY)
+
+-----------
+
+Application.mk
+
+APP_MODULES := MyLibrary
+APP_ABI := all
+-----------------------------
+Active
+
+ TextView tv = (TextView) findViewById(R.id.tv);
+
+        tv.setText(new MyNdk().getString());
+
+
