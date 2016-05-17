@@ -117,7 +117,10 @@ NDK-Build <br>
 
 ![](https://github.com/nexstar/Parrot/raw/master/Android/Android-JNI/JNI-Picture/24.PNG)
 
-10.
+10.撰寫JNI顯示在TextView
+
+	  TextView tv = (TextView) findViewById(R.id.tv);
+      tv.setText(new MyNdk().getString());
 
 ![](https://github.com/nexstar/Parrot/raw/master/Android/Android-JNI/JNI-Picture/20.PNG)
 
