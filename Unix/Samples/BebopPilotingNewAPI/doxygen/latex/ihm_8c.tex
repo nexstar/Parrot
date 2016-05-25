@@ -1,0 +1,73 @@
+\hypertarget{ihm_8c}{}\section{ihm.\+c File Reference}
+\label{ihm_8c}\index{ihm.\+c@{ihm.\+c}}
+
+
+This file contains sources about ncurses I\+H\+M used by arsdk example \char`\"{}\+Jumping\+Sumo\+Piloting\char`\"{}.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$curses.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$lib\+A\+R\+S\+A\+L/\+A\+R\+S\+A\+L.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}ihm.\+h\char`\"{}}\\*
+Include dependency graph for ihm.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{ihm_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{ihm_8c_a58017ec045269446009126ad5f844356}{}\#define {\bfseries H\+E\+A\+D\+E\+R\+\_\+\+X}~0\label{ihm_8c_a58017ec045269446009126ad5f844356}
+
+\item 
+\hypertarget{ihm_8c_add11cdd656672eaeef4410dda5937b0d}{}\#define {\bfseries H\+E\+A\+D\+E\+R\+\_\+\+Y}~0\label{ihm_8c_add11cdd656672eaeef4410dda5937b0d}
+
+\item 
+\hypertarget{ihm_8c_a741dafa1bd1ea79378f402bb15fbeeca}{}\#define {\bfseries I\+N\+F\+O\+\_\+\+X}~0\label{ihm_8c_a741dafa1bd1ea79378f402bb15fbeeca}
+
+\item 
+\hypertarget{ihm_8c_a89904cb639d01dbee42b37befc20650c}{}\#define {\bfseries I\+N\+F\+O\+\_\+\+Y}~2\label{ihm_8c_a89904cb639d01dbee42b37befc20650c}
+
+\item 
+\hypertarget{ihm_8c_a23cab0b49444cc4870f0d671f3d03ace}{}\#define {\bfseries B\+A\+T\+T\+E\+R\+Y\+\_\+\+X}~0\label{ihm_8c_a23cab0b49444cc4870f0d671f3d03ace}
+
+\item 
+\hypertarget{ihm_8c_a94ccb05dea98d7f090d5af6a7143eacb}{}\#define {\bfseries B\+A\+T\+T\+E\+R\+Y\+\_\+\+Y}~4\label{ihm_8c_a94ccb05dea98d7f090d5af6a7143eacb}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{ihm_8c_a745d6e022c26b5c342d0c452be45daba}{}void $\ast$ {\bfseries I\+H\+M\+\_\+\+Input\+Processing} (void $\ast$data)\label{ihm_8c_a745d6e022c26b5c342d0c452be45daba}
+
+\item 
+\hypertarget{ihm_8c_a0c80596eb686749500f4f028f1b96e03}{}\hyperlink{structIHM__t}{I\+H\+M\+\_\+t} $\ast$ {\bfseries I\+H\+M\+\_\+\+New} (I\+H\+M\+\_\+on\+Input\+Event\+\_\+t on\+Input\+Event\+Callback)\label{ihm_8c_a0c80596eb686749500f4f028f1b96e03}
+
+\item 
+\hypertarget{ihm_8c_a16fdfbb07176c17e294bbd2aff53f36d}{}void {\bfseries I\+H\+M\+\_\+\+Delete} (\hyperlink{structIHM__t}{I\+H\+M\+\_\+t} $\ast$$\ast$ihm)\label{ihm_8c_a16fdfbb07176c17e294bbd2aff53f36d}
+
+\item 
+\hypertarget{ihm_8c_ae15b885587a1ad3ce40cd267a15d4ab9}{}void {\bfseries I\+H\+M\+\_\+set\+Custom\+Data} (\hyperlink{structIHM__t}{I\+H\+M\+\_\+t} $\ast$ihm, void $\ast$custom\+Data)\label{ihm_8c_ae15b885587a1ad3ce40cd267a15d4ab9}
+
+\item 
+\hypertarget{ihm_8c_a026e2b72ec609344806c307c4946fd07}{}void {\bfseries I\+H\+M\+\_\+\+Print\+Header} (\hyperlink{structIHM__t}{I\+H\+M\+\_\+t} $\ast$ihm, char $\ast$header\+Str)\label{ihm_8c_a026e2b72ec609344806c307c4946fd07}
+
+\item 
+\hypertarget{ihm_8c_ae9098136f2de628d2537fd84eba10b1e}{}void {\bfseries I\+H\+M\+\_\+\+Print\+Info} (\hyperlink{structIHM__t}{I\+H\+M\+\_\+t} $\ast$ihm, char $\ast$info\+Str)\label{ihm_8c_ae9098136f2de628d2537fd84eba10b1e}
+
+\item 
+\hypertarget{ihm_8c_af0d8adaf58223e18f35ea379ebeb5dbd}{}void {\bfseries I\+H\+M\+\_\+\+Print\+Battery} (\hyperlink{structIHM__t}{I\+H\+M\+\_\+t} $\ast$ihm, uint8\+\_\+t percent)\label{ihm_8c_af0d8adaf58223e18f35ea379ebeb5dbd}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains sources about ncurses I\+H\+M used by arsdk example \char`\"{}\+Jumping\+Sumo\+Piloting\char`\"{}. 
+
+\begin{DoxyDate}{Date}
+15/01/2015 
+\end{DoxyDate}

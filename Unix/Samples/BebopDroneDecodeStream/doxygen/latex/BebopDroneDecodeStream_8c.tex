@@ -1,0 +1,278 @@
+\hypertarget{BebopDroneDecodeStream_8c}{}\section{Bebop\+Drone\+Decode\+Stream.\+c File Reference}
+\label{BebopDroneDecodeStream_8c}\index{Bebop\+Drone\+Decode\+Stream.\+c@{Bebop\+Drone\+Decode\+Stream.\+c}}
+
+
+This file contains sources about basic arsdk example decoding video stream from a Bebop\+Drone with ffmpeg.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$fcntl.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$signal.\+h$>$}\\*
+{\ttfamily \#include $<$libavformat/avformat.\+h$>$}\\*
+{\ttfamily \#include $<$libavcodec/avcodec.\+h$>$}\\*
+{\ttfamily \#include $<$libavutil/imgutils.\+h$>$}\\*
+{\ttfamily \#include $<$lib\+A\+R\+S\+A\+L/\+A\+R\+S\+A\+L.\+h$>$}\\*
+{\ttfamily \#include $<$lib\+A\+R\+S\+A\+L/\+A\+R\+S\+A\+L\+\_\+\+Print.\+h$>$}\\*
+{\ttfamily \#include $<$lib\+A\+R\+Network/\+A\+R\+Network.\+h$>$}\\*
+{\ttfamily \#include $<$lib\+A\+R\+Network\+A\+L/\+A\+R\+Network\+A\+L.\+h$>$}\\*
+{\ttfamily \#include $<$lib\+A\+R\+Discovery/\+A\+R\+Discovery.\+h$>$}\\*
+{\ttfamily \#include $<$lib\+A\+R\+Stream/\+A\+R\+Stream.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}Bebop\+Drone\+Decode\+Stream.\+h\char`\"{}}\\*
+Include dependency graph for Bebop\+Drone\+Decode\+Stream.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{BebopDroneDecodeStream_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structRawFrame__t}{Raw\+Frame\+\_\+t}
+\begin{DoxyCompactList}\small\item\em Component of a frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_afc3d101f633a076cc1ca84b85b6224b2}{}\#define {\bfseries T\+A\+G}~\char`\"{}Bebop\+Drone\+Receive\+Stream\char`\"{}\label{BebopDroneDecodeStream_8c_afc3d101f633a076cc1ca84b85b6224b2}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_adc013e0d9f61960f4fe071304a6c382e}{}\#define {\bfseries B\+D\+\_\+\+I\+P\+\_\+\+A\+D\+D\+R\+E\+S\+S}~\char`\"{}192.\+168.\+42.\+1\char`\"{}\label{BebopDroneDecodeStream_8c_adc013e0d9f61960f4fe071304a6c382e}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a1c4908ea58b5fdf0a8ab4ab76b087363}{}\#define {\bfseries B\+D\+\_\+\+D\+I\+S\+C\+O\+V\+E\+R\+Y\+\_\+\+P\+O\+R\+T}~44444\label{BebopDroneDecodeStream_8c_a1c4908ea58b5fdf0a8ab4ab76b087363}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a9a52aa0b24ad822bc2a71904fc13a4b0}{}\#define {\bfseries B\+D\+\_\+\+C2\+D\+\_\+\+P\+O\+R\+T}~54321\label{BebopDroneDecodeStream_8c_a9a52aa0b24ad822bc2a71904fc13a4b0}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a7a8380e4998c7d3aa875daa140f91dc0}{}\#define {\bfseries B\+D\+\_\+\+D2\+C\+\_\+\+P\+O\+R\+T}~43210\label{BebopDroneDecodeStream_8c_a7a8380e4998c7d3aa875daa140f91dc0}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_aab580caea5e72eb22323754d9c8cc68f}{}\#define {\bfseries B\+D\+\_\+\+N\+E\+T\+\_\+\+C\+D\+\_\+\+N\+O\+N\+A\+C\+K\+\_\+\+I\+D}~10\label{BebopDroneDecodeStream_8c_aab580caea5e72eb22323754d9c8cc68f}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a60fa904d11e4eaeecfd6f2508d013296}{}\#define {\bfseries B\+D\+\_\+\+N\+E\+T\+\_\+\+C\+D\+\_\+\+A\+C\+K\+\_\+\+I\+D}~11\label{BebopDroneDecodeStream_8c_a60fa904d11e4eaeecfd6f2508d013296}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_addd16331fccdec82496eb6d1494168f3}{}\#define {\bfseries B\+D\+\_\+\+N\+E\+T\+\_\+\+C\+D\+\_\+\+E\+M\+E\+R\+G\+E\+N\+C\+Y\+\_\+\+I\+D}~12\label{BebopDroneDecodeStream_8c_addd16331fccdec82496eb6d1494168f3}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_ac155a7aa415c6f19d9bc18eb5b3294fd}{}\#define {\bfseries B\+D\+\_\+\+N\+E\+T\+\_\+\+C\+D\+\_\+\+V\+I\+D\+E\+O\+\_\+\+A\+C\+K\+\_\+\+I\+D}~13\label{BebopDroneDecodeStream_8c_ac155a7aa415c6f19d9bc18eb5b3294fd}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a33b2b60f79af99e36a36bd32ac19264f}{}\#define {\bfseries B\+D\+\_\+\+N\+E\+T\+\_\+\+D\+C\+\_\+\+N\+A\+V\+D\+A\+T\+A\+\_\+\+I\+D}~127\label{BebopDroneDecodeStream_8c_a33b2b60f79af99e36a36bd32ac19264f}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_aec4b42e6bc5ef48a8f46890fbb8ec774}{}\#define {\bfseries B\+D\+\_\+\+N\+E\+T\+\_\+\+D\+C\+\_\+\+E\+V\+E\+N\+T\+\_\+\+I\+D}~126\label{BebopDroneDecodeStream_8c_aec4b42e6bc5ef48a8f46890fbb8ec774}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_aa7c9d49af109dd610c0ad794fdca8a40}{}\#define {\bfseries B\+D\+\_\+\+N\+E\+T\+\_\+\+D\+C\+\_\+\+V\+I\+D\+E\+O\+\_\+\+D\+A\+T\+A\+\_\+\+I\+D}~125\label{BebopDroneDecodeStream_8c_aa7c9d49af109dd610c0ad794fdca8a40}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a2b68f6f58d408d67633d2b2dbc500949}{}\#define {\bfseries B\+D\+\_\+\+N\+E\+T\+\_\+\+D\+C\+\_\+\+V\+I\+D\+E\+O\+\_\+\+F\+R\+A\+G\+\_\+\+S\+I\+Z\+E}~65000\label{BebopDroneDecodeStream_8c_a2b68f6f58d408d67633d2b2dbc500949}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a9f457f37830d95376ab604ca8ab32f84}{}\#define {\bfseries B\+D\+\_\+\+N\+E\+T\+\_\+\+D\+C\+\_\+\+V\+I\+D\+E\+O\+\_\+\+M\+A\+X\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+F\+R\+A\+G}~4\label{BebopDroneDecodeStream_8c_a9f457f37830d95376ab604ca8ab32f84}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a441987ded0112a24887aa2c98aa73798}{}\#define {\bfseries B\+D\+\_\+\+R\+A\+W\+\_\+\+F\+R\+A\+M\+E\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+Z\+E}~50\label{BebopDroneDecodeStream_8c_a441987ded0112a24887aa2c98aa73798}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_ad98c19cb9af7ea2507a1e6d39732ccfe}{}\#define {\bfseries B\+D\+\_\+\+R\+A\+W\+\_\+\+F\+R\+A\+M\+E\+\_\+\+P\+O\+O\+L\+\_\+\+S\+I\+Z\+E}~50\label{BebopDroneDecodeStream_8c_ad98c19cb9af7ea2507a1e6d39732ccfe}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a2411ca45269a59691454ca7c3b0f34f5}{}\#define {\bfseries E\+R\+R\+O\+R\+\_\+\+S\+T\+R\+\_\+\+L\+E\+N\+G\+T\+H}~2048\label{BebopDroneDecodeStream_8c_a2411ca45269a59691454ca7c3b0f34f5}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_abc7fca69f0408724458bfe224397ad9c}{}\#define {\bfseries F\+I\+F\+O\+\_\+\+D\+I\+R\+\_\+\+P\+A\+T\+T\+E\+R\+N}~\char`\"{}/tmp/arsdk\+\_\+\+X\+X\+X\+X\+X\+X\char`\"{}\label{BebopDroneDecodeStream_8c_abc7fca69f0408724458bfe224397ad9c}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a4e0d0f1b9bc23052255969da4c5ee560}{}\#define {\bfseries F\+I\+F\+O\+\_\+\+N\+A\+M\+E}~\char`\"{}arsdk\+\_\+fifo\char`\"{}\label{BebopDroneDecodeStream_8c_a4e0d0f1b9bc23052255969da4c5ee560}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{BebopDroneDecodeStream_8c_a08bfd7b1c4195ed4b8b27bdf432f8ca2}{get\+Next\+Data\+Callback} (uint8\+\_\+t $\ast$$\ast$data, void $\ast$custom\+Data)
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a691cde673f17879b38d34df8275b21fe}{}void $\ast$ {\bfseries Decode\+\_\+\+Run\+Data\+Thread} (void $\ast$custom\+Data)\label{BebopDroneDecodeStream_8c_a691cde673f17879b38d34df8275b21fe}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a4a44a241e01c20801739b64f9422068a}{}\hyperlink{structRawFrame__t}{Raw\+Frame\+\_\+t} $\ast$ {\bfseries get\+Free\+Raw\+Frame} (\hyperlink{structBD__MANAGER__t}{B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$device\+Manager)\label{BebopDroneDecodeStream_8c_a4a44a241e01c20801739b64f9422068a}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_ab72dad3a5c7e1080803610a51530280c}{}void {\bfseries add\+Free\+Raw\+Frame\+To\+Fifo} (\hyperlink{structBD__MANAGER__t}{B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$device\+Manager, \hyperlink{structRawFrame__t}{Raw\+Frame\+\_\+t} $\ast$raw\+Frame)\label{BebopDroneDecodeStream_8c_ab72dad3a5c7e1080803610a51530280c}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a46c3c034ff0bfbedff5cdd6bc24f489e}{}void {\bfseries flush\+Fifo} (\hyperlink{structBD__MANAGER__t}{B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$device\+Manager)\label{BebopDroneDecodeStream_8c_a46c3c034ff0bfbedff5cdd6bc24f489e}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a2861f4ce82668c5a911c1f8f40d78ae5}{}void {\bfseries put\+Raw\+Frame\+Back\+To\+Pool} (\hyperlink{structBD__MANAGER__t}{B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$device\+Manager, int fifo\+Idx)\label{BebopDroneDecodeStream_8c_a2861f4ce82668c5a911c1f8f40d78ae5}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a8b2bb5235050c24fd99afd0433a776ee}{}\hyperlink{structRawFrame__t}{Raw\+Frame\+\_\+t} $\ast$ {\bfseries get\+Frame\+From\+Data} (\hyperlink{structBD__MANAGER__t}{B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$device\+Manager, uint8\+\_\+t $\ast$data)\label{BebopDroneDecodeStream_8c_a8b2bb5235050c24fd99afd0433a776ee}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a0ddf1224851353fc92bfbff6f499fa97}{}int {\bfseries main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})\label{BebopDroneDecodeStream_8c_a0ddf1224851353fc92bfbff6f499fa97}
+
+\item 
+int \hyperlink{BebopDroneDecodeStream_8c_a2b9b6a2446aa42bc9946d785335c04da}{ardiscovery\+Connect} (\hyperlink{structBD__MANAGER__t}{B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$device\+Manager)
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a54ed290cab8b5d7753f8e1cfde7f3402}{}e\+A\+R\+D\+I\+S\+C\+O\+V\+E\+R\+Y\+\_\+\+E\+R\+R\+O\+R {\bfseries A\+R\+D\+I\+S\+C\+O\+V\+E\+R\+Y\+\_\+\+Connection\+\_\+\+Send\+Json\+Callback} (uint8\+\_\+t $\ast$data\+Tx, uint32\+\_\+t $\ast$data\+Tx\+Size, void $\ast$custom\+Data)\label{BebopDroneDecodeStream_8c_a54ed290cab8b5d7753f8e1cfde7f3402}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_af9c381937710e272ac4bd698f117eaf5}{}e\+A\+R\+D\+I\+S\+C\+O\+V\+E\+R\+Y\+\_\+\+E\+R\+R\+O\+R {\bfseries A\+R\+D\+I\+S\+C\+O\+V\+E\+R\+Y\+\_\+\+Connection\+\_\+\+Receive\+Json\+Callback} (uint8\+\_\+t $\ast$data\+Rx, uint32\+\_\+t data\+Rx\+Size, char $\ast$ip, void $\ast$custom\+Data)\label{BebopDroneDecodeStream_8c_af9c381937710e272ac4bd698f117eaf5}
+
+\item 
+int \hyperlink{BebopDroneDecodeStream_8c_a0543f6e06eaff63f731949547f3a85d8}{start\+Network} (\hyperlink{structBD__MANAGER__t}{B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$device\+Manager)
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a8a5e86faf411bff72335ff9cf3895bfb}{}void {\bfseries stop\+Network} (\hyperlink{structBD__MANAGER__t}{B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$device\+Manager)\label{BebopDroneDecodeStream_8c_a8a5e86faf411bff72335ff9cf3895bfb}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_aa2f6a23b311128cdafc9ace4481fa3a6}{}void {\bfseries on\+Disconnect\+Network} (A\+R\+N\+E\+T\+W\+O\+R\+K\+\_\+\+Manager\+\_\+t $\ast$manager, A\+R\+N\+E\+T\+W\+O\+R\+K\+A\+L\+\_\+\+Manager\+\_\+t $\ast$al\+Manager, void $\ast$custom\+Data)\label{BebopDroneDecodeStream_8c_aa2f6a23b311128cdafc9ace4481fa3a6}
+
+\item 
+int \hyperlink{BebopDroneDecodeStream_8c_a6d9fe62983b7fe68d35e9b316d60384d}{start\+Video} (\hyperlink{structBD__MANAGER__t}{B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$device\+Manager)
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a468ec653188df139f2456902cae9601f}{}void {\bfseries stop\+Video} (\hyperlink{structBD__MANAGER__t}{B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$device\+Manager)\label{BebopDroneDecodeStream_8c_a468ec653188df139f2456902cae9601f}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_ae9fd8e64a2ae42500d8c75a08be101d1}{}uint8\+\_\+t $\ast$ {\bfseries frame\+Complete\+Callback} (e\+A\+R\+S\+T\+R\+E\+A\+M\+\_\+\+R\+E\+A\+D\+E\+R\+\_\+\+C\+A\+U\+S\+E cause, uint8\+\_\+t $\ast$frame, uint32\+\_\+t frame\+Size, int number\+Of\+Skipped\+Frames, int is\+Flush\+Frame, uint32\+\_\+t $\ast$new\+Buffer\+Capacity, void $\ast$custom)\label{BebopDroneDecodeStream_8c_ae9fd8e64a2ae42500d8c75a08be101d1}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a98dc5db13136ab0c9ab1c08ed3870474}{}int {\bfseries send\+P\+C\+M\+D} (\hyperlink{structBD__MANAGER__t}{B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$device\+Manager)\label{BebopDroneDecodeStream_8c_a98dc5db13136ab0c9ab1c08ed3870474}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_aaf88d27f65c006348078b8ca94476410}{}int {\bfseries send\+Camera\+Orientation} (\hyperlink{structBD__MANAGER__t}{B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$device\+Manager)\label{BebopDroneDecodeStream_8c_aaf88d27f65c006348078b8ca94476410}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a26cd400731ae5cb29becf45c5f525ae7}{}int {\bfseries send\+Date} (\hyperlink{structBD__MANAGER__t}{B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$device\+Manager)\label{BebopDroneDecodeStream_8c_a26cd400731ae5cb29becf45c5f525ae7}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a7bb16065e10c67f43b404ddcdaf99d73}{}int {\bfseries send\+All\+Settings} (\hyperlink{structBD__MANAGER__t}{B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$device\+Manager)\label{BebopDroneDecodeStream_8c_a7bb16065e10c67f43b404ddcdaf99d73}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a49c2299419ff815bd57b393a03d5d5e3}{}int {\bfseries send\+All\+States} (\hyperlink{structBD__MANAGER__t}{B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$device\+Manager)\label{BebopDroneDecodeStream_8c_a49c2299419ff815bd57b393a03d5d5e3}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a887c5a9c4c6bfb020bb76959c9330efb}{}int {\bfseries send\+Begin\+Stream} (\hyperlink{structBD__MANAGER__t}{B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$device\+Manager)\label{BebopDroneDecodeStream_8c_a887c5a9c4c6bfb020bb76959c9330efb}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_aa5132b6a63b4aea7d98ea6a92bfb9e5e}{}int {\bfseries send\+Takeoff} (\hyperlink{structBD__MANAGER__t}{B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$device\+Manager)\label{BebopDroneDecodeStream_8c_aa5132b6a63b4aea7d98ea6a92bfb9e5e}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a7d65b4f119d3cb15e2c3abd4fdc30f6d}{}int {\bfseries send\+Landing} (\hyperlink{structBD__MANAGER__t}{B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$device\+Manager)\label{BebopDroneDecodeStream_8c_a7d65b4f119d3cb15e2c3abd4fdc30f6d}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_acad5459b948d07f347a90db9712d3304}{}int {\bfseries send\+Emergency} (\hyperlink{structBD__MANAGER__t}{B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$device\+Manager)\label{BebopDroneDecodeStream_8c_acad5459b948d07f347a90db9712d3304}
+
+\item 
+e\+A\+R\+N\+E\+T\+W\+O\+R\+K\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+\+C\+A\+L\+L\+B\+A\+C\+K\+\_\+\+R\+E\+T\+U\+R\+N \hyperlink{BebopDroneDecodeStream_8c_a728f807e66dc811fa6772fb1340e6e92}{arnetwork\+Cmd\+Callback} (int buffer\+\_\+id, uint8\+\_\+t $\ast$data, void $\ast$custom, e\+A\+R\+N\+E\+T\+W\+O\+R\+K\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+\+C\+A\+L\+L\+B\+A\+C\+K\+\_\+\+S\+T\+A\+T\+U\+S cause)
+\item 
+void \hyperlink{BebopDroneDecodeStream_8c_aec865cd29eaaa088c75d7b4d97726201}{register\+A\+R\+Commands\+Callbacks} (\hyperlink{structBD__MANAGER__t}{B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$device\+Manager)
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a334544c60e7a7f8d430b95d75c2dbc4b}{}void {\bfseries unregister\+A\+R\+Commands\+Callbacks} (void)\label{BebopDroneDecodeStream_8c_a334544c60e7a7f8d430b95d75c2dbc4b}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a2e1acc68151890254450a1489e4c699b}{}void {\bfseries battery\+State\+Changed\+Callback} (uint8\+\_\+t percent, void $\ast$custom)\label{BebopDroneDecodeStream_8c_a2e1acc68151890254450a1489e4c699b}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a5fca32daf44f156544e8682b5b59dccb}{}void {\bfseries flying\+State\+Changed\+Callback} (e\+A\+R\+C\+O\+M\+M\+A\+N\+D\+S\+\_\+\+A\+R\+D\+R\+O\+N\+E3\+\_\+\+P\+I\+L\+O\+T\+I\+N\+G\+S\+T\+A\+T\+E\+\_\+\+F\+L\+Y\+I\+N\+G\+S\+T\+A\+T\+E\+C\+H\+A\+N\+G\+E\+D\+\_\+\+S\+T\+A\+T\+E state, void $\ast$custom)\label{BebopDroneDecodeStream_8c_a5fca32daf44f156544e8682b5b59dccb}
+
+\item 
+int \hyperlink{BebopDroneDecodeStream_8c_a02995257f549a6f2978a01d670156848}{start\+Decoder} (\hyperlink{structBD__MANAGER__t}{B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$device\+Manager)
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a1b2156ee0ef231027011827dbd7b090b}{}void {\bfseries stop\+Decoder} (\hyperlink{structBD__MANAGER__t}{B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$device\+Manager)\label{BebopDroneDecodeStream_8c_a1b2156ee0ef231027011827dbd7b090b}
+
+\item 
+void \hyperlink{BebopDroneDecodeStream_8c_a3bcbfca6eea9b5388a9ccbe000598e71}{on\+Input\+Event} (e\+I\+H\+M\+\_\+\+I\+N\+P\+U\+T\+\_\+\+E\+V\+E\+N\+T event, void $\ast$custom\+Data)
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_aaebc87fd1d07a699d3b9f1ebd0791896}{}int {\bfseries custom\+Print\+Callback} (e\+A\+R\+S\+A\+L\+\_\+\+P\+R\+I\+N\+T\+\_\+\+L\+E\+V\+E\+L level, const char $\ast$tag, const char $\ast$format, va\+\_\+list va)\label{BebopDroneDecodeStream_8c_aaebc87fd1d07a699d3b9f1ebd0791896}
+
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a7d2ca1ba0336e57f2500231a6ca05091}{}int {\bfseries g\+I\+H\+M\+Run} = 0\label{BebopDroneDecodeStream_8c_a7d2ca1ba0336e57f2500231a6ca05091}
+
+\item 
+\hypertarget{BebopDroneDecodeStream_8c_a1f61d9e9cc96aa362c377e65aa9e408e}{}char {\bfseries g\+Error\+Str} \mbox{[}E\+R\+R\+O\+R\+\_\+\+S\+T\+R\+\_\+\+L\+E\+N\+G\+T\+H\mbox{]}\label{BebopDroneDecodeStream_8c_a1f61d9e9cc96aa362c377e65aa9e408e}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains sources about basic arsdk example decoding video stream from a Bebop\+Drone with ffmpeg. 
+
+\begin{DoxyDate}{Date}
+08/01/2015 
+\end{DoxyDate}
+
+
+\subsection{Function Documentation}
+\hypertarget{BebopDroneDecodeStream_8c_a2b9b6a2446aa42bc9946d785335c04da}{}\index{Bebop\+Drone\+Decode\+Stream.\+c@{Bebop\+Drone\+Decode\+Stream.\+c}!ardiscovery\+Connect@{ardiscovery\+Connect}}
+\index{ardiscovery\+Connect@{ardiscovery\+Connect}!Bebop\+Drone\+Decode\+Stream.\+c@{Bebop\+Drone\+Decode\+Stream.\+c}}
+\subsubsection[{ardiscovery\+Connect}]{\setlength{\rightskip}{0pt plus 5cm}int ardiscovery\+Connect (
+\begin{DoxyParamCaption}
+\item[{{\bf B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$}]{device\+Manager}
+\end{DoxyParamCaption}
+)}\label{BebopDroneDecodeStream_8c_a2b9b6a2446aa42bc9946d785335c04da}
+Connection part \hypertarget{BebopDroneDecodeStream_8c_a728f807e66dc811fa6772fb1340e6e92}{}\index{Bebop\+Drone\+Decode\+Stream.\+c@{Bebop\+Drone\+Decode\+Stream.\+c}!arnetwork\+Cmd\+Callback@{arnetwork\+Cmd\+Callback}}
+\index{arnetwork\+Cmd\+Callback@{arnetwork\+Cmd\+Callback}!Bebop\+Drone\+Decode\+Stream.\+c@{Bebop\+Drone\+Decode\+Stream.\+c}}
+\subsubsection[{arnetwork\+Cmd\+Callback}]{\setlength{\rightskip}{0pt plus 5cm}e\+A\+R\+N\+E\+T\+W\+O\+R\+K\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+\+C\+A\+L\+L\+B\+A\+C\+K\+\_\+\+R\+E\+T\+U\+R\+N arnetwork\+Cmd\+Callback (
+\begin{DoxyParamCaption}
+\item[{int}]{buffer\+\_\+id, }
+\item[{uint8\+\_\+t $\ast$}]{data, }
+\item[{void $\ast$}]{custom, }
+\item[{e\+A\+R\+N\+E\+T\+W\+O\+R\+K\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+\+C\+A\+L\+L\+B\+A\+C\+K\+\_\+\+S\+T\+A\+T\+U\+S}]{cause}
+\end{DoxyParamCaption}
+)}\label{BebopDroneDecodeStream_8c_a728f807e66dc811fa6772fb1340e6e92}
+Commands part \hypertarget{BebopDroneDecodeStream_8c_a08bfd7b1c4195ed4b8b27bdf432f8ca2}{}\index{Bebop\+Drone\+Decode\+Stream.\+c@{Bebop\+Drone\+Decode\+Stream.\+c}!get\+Next\+Data\+Callback@{get\+Next\+Data\+Callback}}
+\index{get\+Next\+Data\+Callback@{get\+Next\+Data\+Callback}!Bebop\+Drone\+Decode\+Stream.\+c@{Bebop\+Drone\+Decode\+Stream.\+c}}
+\subsubsection[{get\+Next\+Data\+Callback}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Next\+Data\+Callback (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$$\ast$}]{data, }
+\item[{void $\ast$}]{custom\+Data}
+\end{DoxyParamCaption}
+)}\label{BebopDroneDecodeStream_8c_a08bfd7b1c4195ed4b8b27bdf432f8ca2}
+Handle older ffmpeg/libav versions \hypertarget{BebopDroneDecodeStream_8c_a3bcbfca6eea9b5388a9ccbe000598e71}{}\index{Bebop\+Drone\+Decode\+Stream.\+c@{Bebop\+Drone\+Decode\+Stream.\+c}!on\+Input\+Event@{on\+Input\+Event}}
+\index{on\+Input\+Event@{on\+Input\+Event}!Bebop\+Drone\+Decode\+Stream.\+c@{Bebop\+Drone\+Decode\+Stream.\+c}}
+\subsubsection[{on\+Input\+Event}]{\setlength{\rightskip}{0pt plus 5cm}void on\+Input\+Event (
+\begin{DoxyParamCaption}
+\item[{e\+I\+H\+M\+\_\+\+I\+N\+P\+U\+T\+\_\+\+E\+V\+E\+N\+T}]{event, }
+\item[{void $\ast$}]{custom\+Data}
+\end{DoxyParamCaption}
+)}\label{BebopDroneDecodeStream_8c_a3bcbfca6eea9b5388a9ccbe000598e71}
+I\+H\+M callbacks \hypertarget{BebopDroneDecodeStream_8c_aec865cd29eaaa088c75d7b4d97726201}{}\index{Bebop\+Drone\+Decode\+Stream.\+c@{Bebop\+Drone\+Decode\+Stream.\+c}!register\+A\+R\+Commands\+Callbacks@{register\+A\+R\+Commands\+Callbacks}}
+\index{register\+A\+R\+Commands\+Callbacks@{register\+A\+R\+Commands\+Callbacks}!Bebop\+Drone\+Decode\+Stream.\+c@{Bebop\+Drone\+Decode\+Stream.\+c}}
+\subsubsection[{register\+A\+R\+Commands\+Callbacks}]{\setlength{\rightskip}{0pt plus 5cm}void register\+A\+R\+Commands\+Callbacks (
+\begin{DoxyParamCaption}
+\item[{{\bf B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$}]{device\+Manager}
+\end{DoxyParamCaption}
+)}\label{BebopDroneDecodeStream_8c_aec865cd29eaaa088c75d7b4d97726201}
+Commands callback part \hypertarget{BebopDroneDecodeStream_8c_a02995257f549a6f2978a01d670156848}{}\index{Bebop\+Drone\+Decode\+Stream.\+c@{Bebop\+Drone\+Decode\+Stream.\+c}!start\+Decoder@{start\+Decoder}}
+\index{start\+Decoder@{start\+Decoder}!Bebop\+Drone\+Decode\+Stream.\+c@{Bebop\+Drone\+Decode\+Stream.\+c}}
+\subsubsection[{start\+Decoder}]{\setlength{\rightskip}{0pt plus 5cm}int start\+Decoder (
+\begin{DoxyParamCaption}
+\item[{{\bf B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$}]{device\+Manager}
+\end{DoxyParamCaption}
+)}\label{BebopDroneDecodeStream_8c_a02995257f549a6f2978a01d670156848}
+decoding part \hypertarget{BebopDroneDecodeStream_8c_a0543f6e06eaff63f731949547f3a85d8}{}\index{Bebop\+Drone\+Decode\+Stream.\+c@{Bebop\+Drone\+Decode\+Stream.\+c}!start\+Network@{start\+Network}}
+\index{start\+Network@{start\+Network}!Bebop\+Drone\+Decode\+Stream.\+c@{Bebop\+Drone\+Decode\+Stream.\+c}}
+\subsubsection[{start\+Network}]{\setlength{\rightskip}{0pt plus 5cm}int start\+Network (
+\begin{DoxyParamCaption}
+\item[{{\bf B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$}]{device\+Manager}
+\end{DoxyParamCaption}
+)}\label{BebopDroneDecodeStream_8c_a0543f6e06eaff63f731949547f3a85d8}
+Network part \hypertarget{BebopDroneDecodeStream_8c_a6d9fe62983b7fe68d35e9b316d60384d}{}\index{Bebop\+Drone\+Decode\+Stream.\+c@{Bebop\+Drone\+Decode\+Stream.\+c}!start\+Video@{start\+Video}}
+\index{start\+Video@{start\+Video}!Bebop\+Drone\+Decode\+Stream.\+c@{Bebop\+Drone\+Decode\+Stream.\+c}}
+\subsubsection[{start\+Video}]{\setlength{\rightskip}{0pt plus 5cm}int start\+Video (
+\begin{DoxyParamCaption}
+\item[{{\bf B\+D\+\_\+\+M\+A\+N\+A\+G\+E\+R\+\_\+t} $\ast$}]{device\+Manager}
+\end{DoxyParamCaption}
+)}\label{BebopDroneDecodeStream_8c_a6d9fe62983b7fe68d35e9b316d60384d}
+Video part 

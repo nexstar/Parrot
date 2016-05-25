@@ -1,0 +1,5 @@
+<map id="ARCODECS_Manager_t" name="ARCODECS_Manager_t">
+<area shape="rect" id="node2" href="$struct__ARCODECS__Manager__Frame__t__.html" title="Video and audio codecs manager allow to decode video and audio. " alt="" coords="20,95,245,121"/>
+<area shape="rect" id="node3" href="$struct__ARCODECS__Manager__Component__t__.html" title="Component of a frame. " alt="" coords="5,5,260,32"/>
+<area shape="rect" id="node4" href="$struct__ARCODECS__Manager__FFMPEGDecoder__t__.html" title="_ARCODECS_Manager_FFMPEGDecoder_t_" alt="" coords="269,95,561,121"/>
+</map>

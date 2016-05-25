@@ -1,0 +1,112 @@
+\hypertarget{BebopPiloting_8c}{}\section{Bebop\+Piloting.\+c File Reference}
+\label{BebopPiloting_8c}\index{Bebop\+Piloting.\+c@{Bebop\+Piloting.\+c}}
+
+
+This file contains sources about basic arsdk example sending commands to a bebop drone for piloting it and make it jump it and receiving its battery level.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$curses.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$signal.\+h$>$}\\*
+{\ttfamily \#include $<$errno.\+h$>$}\\*
+{\ttfamily \#include $<$lib\+A\+R\+S\+A\+L/\+A\+R\+S\+A\+L.\+h$>$}\\*
+{\ttfamily \#include $<$lib\+A\+R\+Controller/\+A\+R\+Controller.\+h$>$}\\*
+{\ttfamily \#include $<$lib\+A\+R\+Discovery/\+A\+R\+Discovery.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}Bebop\+Piloting.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}ihm.\+h\char`\"{}}\\*
+Include dependency graph for Bebop\+Piloting.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{BebopPiloting_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{BebopPiloting_8c_afc3d101f633a076cc1ca84b85b6224b2}{}\#define {\bfseries T\+A\+G}~\char`\"{}S\+D\+K\+Example\char`\"{}\label{BebopPiloting_8c_afc3d101f633a076cc1ca84b85b6224b2}
+
+\item 
+\hypertarget{BebopPiloting_8c_a2411ca45269a59691454ca7c3b0f34f5}{}\#define {\bfseries E\+R\+R\+O\+R\+\_\+\+S\+T\+R\+\_\+\+L\+E\+N\+G\+T\+H}~2048\label{BebopPiloting_8c_a2411ca45269a59691454ca7c3b0f34f5}
+
+\item 
+\hypertarget{BebopPiloting_8c_acd0cd12adc95b2e0cec50f4374b32dff}{}\#define {\bfseries B\+E\+B\+O\+P\+\_\+\+I\+P\+\_\+\+A\+D\+D\+R\+E\+S\+S}~\char`\"{}192.\+168.\+42.\+1\char`\"{}\label{BebopPiloting_8c_acd0cd12adc95b2e0cec50f4374b32dff}
+
+\item 
+\hypertarget{BebopPiloting_8c_a3ab53ceedcb0afddba4c461f245e4cd7}{}\#define {\bfseries B\+E\+B\+O\+P\+\_\+\+D\+I\+S\+C\+O\+V\+E\+R\+Y\+\_\+\+P\+O\+R\+T}~44444\label{BebopPiloting_8c_a3ab53ceedcb0afddba4c461f245e4cd7}
+
+\item 
+\hypertarget{BebopPiloting_8c_a0fd24e9c1fd0f7fddb54b8167064d4ea}{}\#define {\bfseries D\+I\+S\+P\+L\+A\+Y\+\_\+\+W\+I\+T\+H\+\_\+\+M\+P\+L\+A\+Y\+E\+R}~1\label{BebopPiloting_8c_a0fd24e9c1fd0f7fddb54b8167064d4ea}
+
+\item 
+\hypertarget{BebopPiloting_8c_abc7fca69f0408724458bfe224397ad9c}{}\#define {\bfseries F\+I\+F\+O\+\_\+\+D\+I\+R\+\_\+\+P\+A\+T\+T\+E\+R\+N}~\char`\"{}/tmp/arsdk\+\_\+\+X\+X\+X\+X\+X\+X\char`\"{}\label{BebopPiloting_8c_abc7fca69f0408724458bfe224397ad9c}
+
+\item 
+\hypertarget{BebopPiloting_8c_a4e0d0f1b9bc23052255969da4c5ee560}{}\#define {\bfseries F\+I\+F\+O\+\_\+\+N\+A\+M\+E}~\char`\"{}arsdk\+\_\+fifo\char`\"{}\label{BebopPiloting_8c_a4e0d0f1b9bc23052255969da4c5ee560}
+
+\item 
+\hypertarget{BebopPiloting_8c_ae66af21320118d87b0d554b56b5eb5ea}{}\#define {\bfseries I\+H\+M}\label{BebopPiloting_8c_ae66af21320118d87b0d554b56b5eb5ea}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{BebopPiloting_8c_a0ddf1224851353fc92bfbff6f499fa97}{}int {\bfseries main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})\label{BebopPiloting_8c_a0ddf1224851353fc92bfbff6f499fa97}
+
+\item 
+\hypertarget{BebopPiloting_8c_acd97b9021b0a99c1a838fcdc1ed142b7}{}void {\bfseries state\+Changed} (e\+A\+R\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+S\+T\+A\+T\+E new\+State, e\+A\+R\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+E\+R\+R\+O\+R error, void $\ast$custom\+Data)\label{BebopPiloting_8c_acd97b9021b0a99c1a838fcdc1ed142b7}
+
+\item 
+\hypertarget{BebopPiloting_8c_a793e92c275c560533e5df6af59c92200}{}void {\bfseries command\+Received} (e\+A\+R\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+I\+C\+T\+I\+O\+N\+A\+R\+Y\+\_\+\+K\+E\+Y command\+Key, A\+R\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+D\+I\+C\+T\+I\+O\+N\+A\+R\+Y\+\_\+\+E\+L\+E\+M\+E\+N\+T\+\_\+t $\ast$element\+Dictionary, void $\ast$custom\+Data)\label{BebopPiloting_8c_a793e92c275c560533e5df6af59c92200}
+
+\item 
+\hypertarget{BebopPiloting_8c_a70add123ba114ad9de1996a8b53cf939}{}void {\bfseries battery\+State\+Changed} (uint8\+\_\+t percent)\label{BebopPiloting_8c_a70add123ba114ad9de1996a8b53cf939}
+
+\item 
+\hypertarget{BebopPiloting_8c_a67670dff98b1ef27e30547e54cce7bfd}{}e\+A\+R\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+E\+R\+R\+O\+R {\bfseries decoder\+Config\+Callback} (A\+R\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+Stream\+\_\+\+Codec\+\_\+t codec, void $\ast$custom\+Data)\label{BebopPiloting_8c_a67670dff98b1ef27e30547e54cce7bfd}
+
+\item 
+\hypertarget{BebopPiloting_8c_a7c8d10c46f7c25da2a430f29ebd340ee}{}e\+A\+R\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+E\+R\+R\+O\+R {\bfseries did\+Receive\+Frame\+Callback} (A\+R\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+Frame\+\_\+t $\ast$frame, void $\ast$custom\+Data)\label{BebopPiloting_8c_a7c8d10c46f7c25da2a430f29ebd340ee}
+
+\item 
+\hypertarget{BebopPiloting_8c_a3bcbfca6eea9b5388a9ccbe000598e71}{}void {\bfseries on\+Input\+Event} (e\+I\+H\+M\+\_\+\+I\+N\+P\+U\+T\+\_\+\+E\+V\+E\+N\+T event, void $\ast$custom\+Data)\label{BebopPiloting_8c_a3bcbfca6eea9b5388a9ccbe000598e71}
+
+\item 
+\hypertarget{BebopPiloting_8c_aaebc87fd1d07a699d3b9f1ebd0791896}{}int {\bfseries custom\+Print\+Callback} (e\+A\+R\+S\+A\+L\+\_\+\+P\+R\+I\+N\+T\+\_\+\+L\+E\+V\+E\+L level, const char $\ast$tag, const char $\ast$format, va\+\_\+list va)\label{BebopPiloting_8c_aaebc87fd1d07a699d3b9f1ebd0791896}
+
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{BebopPiloting_8c_a7d2ca1ba0336e57f2500231a6ca05091}{}int {\bfseries g\+I\+H\+M\+Run} = 1\label{BebopPiloting_8c_a7d2ca1ba0336e57f2500231a6ca05091}
+
+\item 
+\hypertarget{BebopPiloting_8c_a1f61d9e9cc96aa362c377e65aa9e408e}{}char {\bfseries g\+Error\+Str} \mbox{[}E\+R\+R\+O\+R\+\_\+\+S\+T\+R\+\_\+\+L\+E\+N\+G\+T\+H\mbox{]}\label{BebopPiloting_8c_a1f61d9e9cc96aa362c377e65aa9e408e}
+
+\item 
+\hypertarget{BebopPiloting_8c_a55486e11f62a946ac5023de669e7ba94}{}\hyperlink{structIHM__t}{I\+H\+M\+\_\+t} $\ast$ {\bfseries ihm} = N\+U\+L\+L\label{BebopPiloting_8c_a55486e11f62a946ac5023de669e7ba94}
+
+\item 
+\hypertarget{BebopPiloting_8c_ad223a59d932bdcba53172d117f456b74}{}F\+I\+L\+E $\ast$ {\bfseries video\+Out} = N\+U\+L\+L\label{BebopPiloting_8c_ad223a59d932bdcba53172d117f456b74}
+
+\item 
+\hypertarget{BebopPiloting_8c_a5296c5701714e4539efa1765c86c08bf}{}int {\bfseries frame\+Nb} = 0\label{BebopPiloting_8c_a5296c5701714e4539efa1765c86c08bf}
+
+\item 
+\hypertarget{BebopPiloting_8c_a587ffc7c6d0a6899d0aa91fb1fc0a7e1}{}A\+R\+S\+A\+L\+\_\+\+Sem\+\_\+t {\bfseries state\+Sem}\label{BebopPiloting_8c_a587ffc7c6d0a6899d0aa91fb1fc0a7e1}
+
+\item 
+\hypertarget{BebopPiloting_8c_a82537c84dc30bbc98714abd7741107fe}{}int {\bfseries is\+Bebop2} = 0\label{BebopPiloting_8c_a82537c84dc30bbc98714abd7741107fe}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains sources about basic arsdk example sending commands to a bebop drone for piloting it and make it jump it and receiving its battery level. 
+
+\begin{DoxyDate}{Date}
+15/01/2015 
+\end{DoxyDate}
